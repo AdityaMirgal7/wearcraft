@@ -1,0 +1,223 @@
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('https://images.unsplash.com/photo-1523199455310-87b16c0eed11?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fGNsb3RoaW5nfGVufDB8fDB8fHww') center/cover fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  position: relative;
+}
+
+.signup-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.signup-box {
+  background-color: rgba(27, 26, 26, 0.95);
+  padding: 3rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 650px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border: 2px solid #000;
+  position: relative;
+  z-index: 1;
+}
+
+.signup-box h2 {
+  color: #f5f3f3;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #000;
+}
+
+.subtitle {
+  color: #eee;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.form-group label {
+  color: #f1f1f1;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.9rem 1rem;
+  background-color: #fff;
+  color: #111;
+  font-size: 1rem;
+  border: 1.5px solid #000;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #0077cc;
+  box-shadow: 0 0 0 2px rgba(0, 119, 204, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #555;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.input-hint {
+  color: #ddd;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid #000;
+  opacity: 0.8;
+}
+
+.form-group input:invalid {
+  border-color: #dc3545;
+}
+
+.form-group input:focus:invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.password-error {
+  background: #fff5f5;
+  color: #dc3545;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #dc3545;
+  font-weight: 400;
+  margin-top: 0.3rem;
+}
+
+.error-message {
+  background: #fff5f5;
+  color: #dc3545;
+  font-size: 0.95rem;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #dc3545;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.signup-button {
+  background-color: #f8f8f8;
+  color: #111;
+  padding: 1rem 2rem;
+  border: 2px solid #000;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signup-button:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.login-link {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #eee;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 1.5rem;
+}
+
+.login-link a {
+  color: #005fa3;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid #000;
+  transition: all 0.2s ease;
+}
+
+.login-link a:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .signup-box {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .signup-box h2 {
+    font-size: 2rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .signup-button {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.5rem;
+  }
+}

@@ -1,0 +1,697 @@
+.add-inventory-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  padding-top: 80px;
+}
+
+.add-inventory-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-header h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.form-subtitle {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.form-section {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-section h3 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.inventory-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.form-group select option {
+  background: #2d2d2d;
+  color: #ffffff !important;
+}
+
+.image-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  align-items: center;
+  text-align: center;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.image-preview {
+  width: 100%;
+  aspect-ratio: 1/1;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 0.9rem;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.upload-placeholder i {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.image-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.file-input-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: auto;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.file-input-label:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.file-input-label:active {
+  transform: translateY(0);
+}
+
+.file-input-label i {
+  font-size: 1.1rem;
+  margin-right: 4px;
+}
+
+.file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 0; /* Hide the default text */
+}
+
+/* Hide the default file input text */
+.file-input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.file-input::file-selector-button {
+  display: none;
+}
+
+.file-name {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8px;
+  word-break: break-all;
+  text-align: center;
+  display: block;
+}
+
+.file-input-label.has-file {
+  background: rgba(40, 167, 69, 0.2);
+  border-color: rgba(40, 167, 69, 0.3);
+}
+
+.file-input-label.has-file:hover {
+  background: rgba(40, 167, 69, 0.3);
+}
+
+.or-divider {
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin: 5px 0;
+  position: relative;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.or-divider::before {
+  left: 0;
+}
+
+.or-divider::after {
+  right: 0;
+}
+
+.url-input {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.url-input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.remove-image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px;
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-image:hover {
+  background: #dc3545;
+}
+
+.features-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-input {
+  display: flex;
+  gap: 10px;
+}
+
+.feature-input input {
+  flex: 1;
+}
+
+.remove-feature {
+  padding: 8px 12px;
+  background: rgba(220, 53, 69, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-feature:hover {
+  background: rgba(220, 53, 69, 0.3);
+}
+
+.add-feature {
+  padding: 12px 20px;
+  background: rgba(40, 167, 69, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(40, 167, 69, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.add-feature:hover {
+  background: rgba(40, 167, 69, 0.3);
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.submit-btn,
+.cancel-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.submit-btn {
+  background: rgba(40, 167, 69, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.cancel-btn {
+  background: rgba(108, 117, 125, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(108, 117, 125, 0.3);
+}
+
+.submit-btn:hover {
+  background: rgba(40, 167, 69, 0.3);
+  transform: translateY(-2px);
+}
+
+.cancel-btn:hover {
+  background: rgba(108, 117, 125, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Add styles for input focus state */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Ensure textarea maintains white text */
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+  color: #ffffff !important;
+}
+
+/* Style for select dropdown */
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+/* Style for number input spinners */
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .add-inventory-container {
+    margin: 20px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-grid,
+  .image-upload-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .add-inventory-container {
+    padding: 20px;
+  }
+
+  .form-section {
+    padding: 20px;
+  }
+
+  .image-preview {
+    height: 150px;
+  }
+}
+
+/* Force white text for all form elements */
+.form-group input,
+.form-group textarea,
+.form-group select,
+.url-input,
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.url-input::placeholder,
+.form-group select option,
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus,
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Specific styles for different input types */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"],
+.form-group input[type="url"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Placeholder styles */
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.url-input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.6) !important;
+  opacity: 1 !important;
+}
+
+/* Select dropdown styles */
+.form-group select,
+.form-group select option {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-color: #2d2d2d !important;
+}
+
+/* Textarea specific styles */
+.form-group textarea {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Focus states */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Remove number input spinners */
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Custom select dropdown arrow */
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px;
+}
+
+/* Ensure text remains white in autofill state */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus,
+.form-group input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 30px #2d2d2d inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Make all text elements white */
+.form-header h2,
+.form-subtitle,
+.form-section h3,
+.form-group label,
+.upload-placeholder,
+.file-input-label,
+.or-divider,
+.feature-input label,
+.add-feature,
+.remove-feature,
+.submit-btn,
+.cancel-btn,
+.form-group p,
+.form-group span,
+.form-group div,
+.image-upload-container p,
+.image-upload-container span,
+.image-upload-container div {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Specific styles for different text elements */
+.form-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.form-subtitle {
+  font-size: 1rem;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.form-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 0.9rem;
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.or-divider {
+  text-align: center;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 0.9rem;
+  margin: 5px 0;
+  position: relative;
+}
+
+.feature-input label {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 500;
+}
+
+.add-feature,
+.remove-feature {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 500;
+}
+
+.submit-btn,
+.cancel-btn {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* Ensure all text in image upload containers is white */
+.image-upload-container * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Ensure all text in form groups is white */
+.form-group * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Remove any red borders from error states */
+.form-group input:invalid,
+.form-group textarea:invalid,
+.form-group select:invalid {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Ensure focus states use white borders */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus,
+.file-input-label:focus,
+.url-input:focus {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
+} 
