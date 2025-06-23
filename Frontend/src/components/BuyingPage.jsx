@@ -39,6 +39,42 @@ const BuyingPage = () => {
     { id: 'razorpay', name: 'Credit/Debit Card (Razorpay)', icon: '💳', description: 'Pay securely online' }
   ];
 
+  const saveOrderToDB = async (paymentStatus = 'Pending') => {
+  try {
+    const response = await fetch('http://localhost:5000/api/orders/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        product,
+        quantity: formData.quantity,
+        size: formData.size,
+        totalPrice: total,
+        deliveryMethod: formData.deliveryMethod,
+        deliveryPrice: shipping,
+        paymentMethod: formData.paymentMethod,
+        paymentStatus,
+        shippingDetails: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          pinCode: formData.pinCode,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber
+        }
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message);
+    console.log('Order saved:', data);
+  } catch (err) {
+    console.error('Failed to save order:', err.message);
+  }
+};
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -50,6 +86,41 @@ const BuyingPage = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  const saveOrderToDB = async (paymentStatus = 'Pending') => {
+    try {
+      const response = await fetch('http://localhost:5000/api/order/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product,
+          quantity: formData.quantity,
+          size: formData.size,
+          totalPrice: total,
+          deliveryMethod: formData.deliveryMethod,
+          deliveryPrice: shipping,
+          paymentMethod: formData.paymentMethod,
+          paymentStatus,
+          shippingDetails: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            pinCode: formData.pinCode,
+            email: formData.email,
+            phoneNumber: formData.phoneNumber
+          }
+        })
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message);
+      console.log('Order saved:', data);
+    } catch (err) {
+      console.error('Failed to save order:', err.message);
+    }
+  };
+
   if (formData.paymentMethod === 'razorpay') {
     const loaded = await loadRazorpayScript();
 
@@ -58,26 +129,23 @@ const handleSubmit = async (e) => {
       return;
     }
 
-    // 👇 Call your backend to create an order
-  const res = await fetch('http://localhost:5000/api/payment/orders', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-  amount: (product?.price * formData.quantity + selectedDelivery?.price) * 100,
-  currency: 'INR',
-  receipt: 'order_rcptid_' + Math.floor(Math.random() * 10000)
-})
+    const res = await fetch('http://localhost:5000/api/payment/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: (product?.price * formData.quantity + selectedDelivery?.price) * 100,
+        currency: 'INR',
+        receipt: 'order_rcptid_' + Math.floor(Math.random() * 10000)
+      })
+    });
 
-});
+    const data = await res.json();
+    console.log('Order API response:', data);
 
-const data = await res.json();
-console.log('Order API response:', data);
-
-if (!data || !data.id) {
-  alert('Server error. Please try again.');
-  return;
-}
-
+    if (!data || !data.id) {
+      alert('Server error. Please try again.');
+      return;
+    }
 
     const options = {
       key: 'rzp_test_S9spnBYkDkA19M', // ✅ replace this with your Razorpay key
@@ -87,9 +155,10 @@ if (!data || !data.id) {
       description: 'Order Payment',
       image: 'https://yourlogo.com/logo.png', // optional
       order_id: data.id,
-      handler: function (response) {
+      handler: async function (response) {
         alert('Payment successful!');
-        // optionally, save payment info to DB
+        await saveOrderToDB('Paid');
+        navigate('/');
       },
       prefill: {
         name: `${formData.firstName} ${formData.lastName}`,
@@ -107,10 +176,12 @@ if (!data || !data.id) {
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   } else {
+    await saveOrderToDB('Pending');
     alert('Order placed successfully with Cash on Delivery!');
     navigate('/');
   }
 };
+
 
 const subtotal = product?.price * formData.quantity;
 const selectedDelivery = deliveryMethods.find(d => d.id === formData.deliveryMethod);
